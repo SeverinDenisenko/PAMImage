@@ -24,7 +24,7 @@ namespace pam {
         };
 
         PAM(std::size_t width, std::size_t height, std::size_t depth, std::uint16_t maxval, TupleType tuple);
-        void Write(const std::string& filename);
+        void WriteBinary(const std::string& filename);
 
         std::vector<std::uint16_t>& operator()(std::size_t i, std::size_t j);
         const std::vector<std::uint16_t>& operator()(std::size_t i, std::size_t j) const;

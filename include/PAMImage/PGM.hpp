@@ -17,6 +17,7 @@ namespace pam {
 
         PGM(std::size_t width, std::size_t height, std::uint16_t maxvalue);
         void Write(const std::string& filename);
+        void WriteBinary(const std::string& filename);
 
         std::uint16_t& operator()(std::size_t i, std::size_t j);
         const std::uint16_t& operator()(std::size_t i, std::size_t j) const;

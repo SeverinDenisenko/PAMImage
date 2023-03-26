@@ -28,6 +28,8 @@ namespace pam {
                 file << elem << " ";
             }
         }
+
+        file.close();
     }
 
     std::uint16_t& PGM::operator()(std::size_t i, std::size_t j) {
@@ -36,5 +38,25 @@ namespace pam {
 
     const std::uint16_t& PGM::operator()(std::size_t i, std::size_t j) const {
         return map[i][j];
+    }
+
+    void PGM::WriteBinary(const std::string& filename) {
+        if (maxvalue > Max8)
+            throw std::runtime_error("Binary PGM does not have 16 bit extension!");
+
+        std::ofstream file(filename);
+
+        file << "P5" << std::endl;
+        file << width << " " << height << std::endl;
+        file << maxvalue << std::endl;
+
+        for (auto& row: map) {
+            for (auto elem: row) {
+                auto c = static_cast<std::uint8_t>(elem);
+                file.write(reinterpret_cast<char*>(&c), sizeof(std::uint8_t));
+            }
+        }
+
+        file.close();
     }
 } // pam

@@ -18,6 +18,7 @@ namespace pam {
 
         PPM(std::size_t width, std::size_t height, std::uint16_t maxvalue);
         void Write(const std::string& filename);
+        void WriteBinary(const std::string& filename);
 
         std::array<std::uint16_t, 3>& operator()(std::size_t i, std::size_t j);
         const std::array<std::uint16_t, 3>& operator()(std::size_t i, std::size_t j) const;

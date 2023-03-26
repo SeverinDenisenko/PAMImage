@@ -21,7 +21,7 @@ namespace pam {
         }
     }
 
-    void PAM::Write(const std::string& filename) {
+    void PAM::WriteBinary(const std::string& filename) {
         std::ofstream file(filename);
 
         file << "P7" << std::endl;
