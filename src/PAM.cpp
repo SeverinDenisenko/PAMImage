@@ -7,7 +7,7 @@
 #include <fstream>
 
 namespace pam {
-    PAM::PAM(std::size_t width, std::size_t height, std::size_t depth, std::uint16_t maxval,
+    PAM::PAM(std::size_t width, std::size_t height, std::size_t depth, std::uint8_t maxval,
              PAM::TupleType tuple) : width(width), height(height), depth(depth), maxval(maxval), tuple(tuple) {
 
         map.resize(height);
@@ -53,7 +53,7 @@ namespace pam {
         for (auto& row: map) {
             for (auto& elem: row) {
                 for (auto val: elem) {
-                    file.write(reinterpret_cast<char*>(&val), sizeof(std::uint16_t));
+                    file.write(reinterpret_cast<char*>(&val), sizeof(std::uint8_t));
                 }
             }
         }
@@ -61,11 +61,11 @@ namespace pam {
         file.close();
     }
 
-    std::vector<std::uint16_t>& PAM::operator()(std::size_t i, std::size_t j) {
+    std::vector<std::uint8_t>& PAM::operator()(std::size_t i, std::size_t j) {
         return map[i][j];
     }
 
-    const std::vector<std::uint16_t>& PAM::operator()(std::size_t i, std::size_t j) const {
+    const std::vector<std::uint8_t>& PAM::operator()(std::size_t i, std::size_t j) const {
         return map[i][j];
     }
 } // pam
